@@ -8,9 +8,10 @@ from django.urls import reverse
 # Create your views here.
 
 
-def inndex(request):
+def index(request):
     if not request.user.is_authenticated:
         return HttpResponseRedirect(reverse("login"))
+    return render(request, "users/user.html")
 
 
 def login_view(request):
@@ -22,11 +23,11 @@ def login_view(request):
             login(request, user)
             return HttpResponseRedirect(reverse("index"))
         else:
-          return render(request, "users/login.html", {
-            "message": "invalid credentials"
-          })
+            return render(request, "users/login.html", {
+                "message": "invalid credentials"
+            })
         return render(request, "users/login.html")
 
 
 def logout_view(request):
-    return
+    pass
